@@ -29,10 +29,10 @@ for varIdx=1:length(valueToInspect)
     vmn(1).samples = vonMises.vmrand( sensors.mu(1), sensors.kappa(1), [1,n] );
     vmn(2).samples = vonMises.vmrand( sensors.mu(2), sensors.kappa(2), [1,n] );
     
-    vm.circVar(1) = circular.estCircVar( vmn(1).samples );
-    vm.circVar(2) = circular.estCircVar( vmn(2).samples );
-    wn.circVar(1) = circular.estCircVar( wnn(1).samples );
-    wn.circVar(2) = circular.estCircVar( wnn(2).samples );
+    vm.circVar(1) = circular.estCircularVariance( vmn(1).samples );
+    vm.circVar(2) = circular.estCircularVariance( vmn(2).samples );
+    wn.circVar(1) = circular.estCircularVariance( wnn(1).samples );
+    wn.circVar(2) = circular.estCircularVariance( wnn(2).samples );
     
     for mcIdx = 1:numSamples
         
@@ -66,16 +66,16 @@ for varIdx=1:length(valueToInspect)
     wn.mc.var( varIdx ) = wrappedNormal.estVarWrappedNormal( wn.est.mean );
 %     vm.mc.var( varIdx ) = estCircularMean( vm.est.mean );
     vm.mc.kappa( varIdx ) = vonMises.estKappaVonMises( vm.est.mean );
-    vm.mc.circVar( varIdx ) = circular.estCircVar( vm.est.mean );
-    wn.mc.circVar( varIdx ) = circular.estCircVar( wn.est.mean );
+    vm.mc.circVar( varIdx ) = circular.estCircularVariance( vm.est.mean );
+    wn.mc.circVar( varIdx ) = circular.estCircularVariance( wn.est.mean );
     vm.mc.var( varIdx ) = 1 ./ vm.mc.kappa( varIdx );
     
     gn.mc.varWeighted( varIdx ) = wrappedNormal.estVarWrappedNormal( gn.est.meanWeighted );
     wn.mc.varWeighted( varIdx ) = wrappedNormal.estVarWrappedNormal( wn.est.meanWeighted );
 %     vm.mc.varWeighted( varIdx ) = estCircularMean( vm.est.varWeighted );
     vm.mc.kappaWeighted( varIdx ) = vonMises.estKappaVonMises( vm.est.meanWeighted );
-    vm.mc.circVarWeighted( varIdx ) = circular.estCircVar( vm.est.meanWeighted );
-    wn.mc.circVarWeighted( varIdx ) = circular.estCircVar( wn.est.meanWeighted );
+    vm.mc.circVarWeighted( varIdx ) = circular.estCircularVariance( vm.est.meanWeighted );
+    wn.mc.circVarWeighted( varIdx ) = circular.estCircularVariance( wn.est.meanWeighted );
     
     vm.mc.varWeighted( varIdx ) =  1 ./ vm.mc.kappaWeighted( varIdx );
     
