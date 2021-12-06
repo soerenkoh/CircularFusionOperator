@@ -55,10 +55,10 @@ for varIdx=1:length(valueToInspect)
         vm.est.meanWeighted( mcIdx ) = circular.estCircularWeightedMean( vm.samples, sensors.var );
         
         % Estimate Variance of von Mises
-        vm.est.kappa(mcIdx) = vonMises.fuseKappaVonMisesWeighted( vm.samples, [1 1] );
-        vm.est.kappaWeighted(mcIdx) = vonMises.fuseKappaVonMisesWeighted( vm.samples, sensors.kappa );
-        vm.est.var(mcIdx) = 1 ./ vm.est.kappa(mcIdx);
-        vm.est.varWeighted(mcIdx) = 1 ./ vm.est.kappaWeighted(mcIdx);
+%         vm.est.kappa(mcIdx) = vonMises.fuseKappaVonMisesWeighted( vm.samples, [1 1] );
+%         vm.est.kappaWeighted(mcIdx) = vonMises.fuseKappaVonMisesWeighted( vm.samples, sensors.kappa );
+%         vm.est.var(mcIdx) = 1 ./ vm.est.kappa(mcIdx);
+%         vm.est.varWeighted(mcIdx) = 1 ./ vm.est.kappaWeighted(mcIdx);
         
     end
     %% Extract MC Values
@@ -83,7 +83,6 @@ for varIdx=1:length(valueToInspect)
     % Fuse Variance
     gn.theo.var( varIdx ) = gaussian.fuseVariance( sensors.var );
     wn.theo.var( varIdx ) = gaussian.fuseVariance( sensors.var );
-%     vm.theo.kappa( varIdx ) = vonMises.fuseKappaVonMises( sensors.kappa );
     vm.theo.kappa( varIdx ) = gaussian.fuseVariance( 1 ./ sensors.kappa );
     vm.theo.var( varIdx ) = 1 / vm.theo.kappa( varIdx );
     vm.theo.var( varIdx ) = gaussian.fuseVariance( 1 ./ sensors.kappa );
@@ -107,11 +106,11 @@ for varIdx=1:length(valueToInspect)
    
 %     vm.theo.kappaWeighted( varIdx ) =  1 ./ fuseVarianceNormalWeighted( 1./sensors.kappa );
     vm.theo.kappaWeighted( varIdx ) =  sum( sensors.kappa );
-    vm.theo.kappaWeighted1( varIdx ) = vonMises.fuseKappaVonMisesWeighted( sensors.mu, sensors.kappa );
+%     vm.theo.kappaWeighted1( varIdx ) = vonMises.fuseKappaVonMisesWeighted( sensors.mu, sensors.kappa );
     
     
     vm.theo.varWeighted( varIdx ) = 1 / vm.theo.kappaWeighted( varIdx );
-    vm.theo.varWeighted1( varIdx ) = 1 / vm.theo.kappaWeighted1( varIdx );
+%     vm.theo.varWeighted1( varIdx ) = 1 / vm.theo.kappaWeighted1( varIdx );
 end
 
 %%
@@ -131,13 +130,13 @@ xlabel('Dispersion $$\sigma^2_{Sensor 2} \hat{=} 1/\kappa_{Sensor 2}$$ [rad$$^2$
 title('Mean $$\mu = \pi-0.1$$, Dispersion $$\sigma_{Sensor 1}= 0.3$$ rad$$^2$$','interpreter','latex')
 style.plotSK(gcf)
 
-figure(3) % Von Mises
-plot(valueToInspect, vm.mc.var, valueToInspect, vm.mc.varWeighted, valueToInspect, vm.theo.var, valueToInspect, vm.theo.varWeighted, valueToInspect, vm.theo.varWeighted1)
-legend('MC', 'MC weighted', 'estimate', 'estimate weighted','interpreter','latex')
-ylabel([{'Fused Dispersion'}; {'$$\sigma^2_{fused} \hat{=} 1/\kappa_{fused}$$ [rad$$^2$$]'}],'interpreter','latex')
-xlabel('Dispersion $$\sigma^2_{Sensor 2} \hat{=} 1/\kappa_{Sensor 2}$$ [rad$$^2$$]','interpreter','latex')
-title('Mean $$\mu = \pi-0.1$$, Dispersion $$\sigma_{Sensor 1}= 0.3$$ rad$$^2$$','interpreter','latex')
-style.plotSK(gcf)
+% figure(3) % Von Mises
+% plot(valueToInspect, vm.mc.var, valueToInspect, vm.mc.varWeighted, valueToInspect, vm.theo.var, valueToInspect, vm.theo.varWeighted, valueToInspect, vm.theo.varWeighted1)
+% legend('MC', 'MC weighted', 'estimate', 'estimate weighted','interpreter','latex')
+% ylabel([{'Fused Dispersion'}; {'$$\sigma^2_{fused} \hat{=} 1/\kappa_{fused}$$ [rad$$^2$$]'}],'interpreter','latex')
+% xlabel('Dispersion $$\sigma^2_{Sensor 2} \hat{=} 1/\kappa_{Sensor 2}$$ [rad$$^2$$]','interpreter','latex')
+% title('Mean $$\mu = \pi-0.1$$, Dispersion $$\sigma_{Sensor 1}= 0.3$$ rad$$^2$$','interpreter','latex')
+% style.plotSK(gcf)
 
 figure(4) % Von Mises like Stienne
 plot( 1./valueToInspect, vm.mc.circVarWeighted, 1./valueToInspect, vm.theo.circVarWeighted, 1./valueToInspect,vm.sensor(1).circVar, 1./valueToInspect,vm.sensor(2).circVar)
