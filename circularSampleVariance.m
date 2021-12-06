@@ -1,4 +1,6 @@
-% Comparision Sample Variance of Wrapped Normal and Von Mises Distribution
+% \brief Compare different methods to determine circular sample variance of
+%        von Mises and Wrapped Normal distribution.
+
 clear all
 numSamples = 1e6;
 valueToInspect = 1 ./ linspace (0.02, 5, 100);

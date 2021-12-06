@@ -1,7 +1,7 @@
-%% Circular Fusion Operators
-% Fusion of the headings from two different sensors.
-% Comparision between weighted and unweighted solution.
-% As well as MC Simulation to prove the results
+%% \brief    Evaluate circular fusion operators
+%  \details  Fusion of the headings from two different sensors.
+%            Comparision between weighted and unweighted solution.
+%            As well as MC Simulation to prove the results
 
 clear all
 close all
@@ -20,7 +20,7 @@ for varIdx=1:length(valueToInspect)
     sensors.var(2) = valueToInspect(varIdx);
     sensors.kappa(2) = 1/sensors.var(2);
     
-    % Estimate CircVar
+    % Estimate Circular Variance
     n = 5000;
     gnn(1).samples = sensors.mu(1) + randn(1,n) .* sqrt( sensors.var(1) );
     gnn(2).samples = sensors.mu(2) + randn(1,n) .* sqrt( sensors.var(2) );
