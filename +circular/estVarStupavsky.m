@@ -5,9 +5,8 @@ function variance = estVarStupavsky(samples)
 % https://doi.org/10.1139/e82-068 
 mean = circular.estCircularMean( samples );
 
-for distIdx=1:length(samples)
-    mindist(distIdx) = 2* atan( tan( 0.5 * ( samples(distIdx) - mean) ) ); % FARRUGIA: On the Algorithms Used to Compute the Standard Deviation of Wind Direction
-end % and Yartimatino
+mindist = circular.minimumDistanceBetweenTwoPoints(samples, mean);
+
 n=length(mindist);
 variance  = n/(n-1) * 1/n * sum( mindist.^2 - (1/n*sum( mindist ) ) .^2 );
 
