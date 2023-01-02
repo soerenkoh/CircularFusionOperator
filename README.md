@@ -2,7 +2,7 @@
 
 This code is part of the publication:
 
-S. Kohnert and R. Stolle, "A High-Level Track Fusion Scheme for Circular Quantities," 2021 20th International Conference on Advanced Robotics. 2021, to be published.
+S. Kohnert and R. Stolle, "A High-Level Track Fusion Scheme for Circular Quantities," 2021 20th International Conference on Advanced Robotics (ICAR), 2021, pp. 1087-1092, doi: 10.1109/ICAR53236.2021.9659317.
 
 ### Abstract:
 As sensors get more and more integrated, signalprocessing functions, 
