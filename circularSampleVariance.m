@@ -2,7 +2,7 @@
 %        von Mises and Wrapped Normal distribution.
 
 clear all
-numSamples = 1e6;
+numSamples = 1e5;
 valueToInspect = 1 ./ linspace (0.02, 5, 100);
 
 mu = 1;
